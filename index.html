@@ -1587,7 +1587,7 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="footer" id="contacto">
+    <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-column">
@@ -1733,26 +1733,6 @@
             });
         });
 
-        // Form submission
-        document.getElementById('contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Collect form data
-            const formData = new FormData(this);
-            const data = {};
-            formData.forEach((value, key) => {
-                data[key] = value;
-            });
-            
-            // Here you would normally send to your backend
-            console.log('Form submitted:', data);
-            
-            // Show success message
-            alert('Gracias por su consulta. Nos pondremos en contacto con usted en menos de 24 horas.');
-            
-            // Reset form
-            this.reset();
-        });
 
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
