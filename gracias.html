@@ -8,24 +8,30 @@
     <style>
         :root {
             --primary-blue: #1F3A5F;
+            --dark-blue: #162B47;
             --gold-accent: #C6A75E;
             --font-heading: 'Cormorant Garamond', serif;
             --font-body: 'Montserrat', sans-serif;
         }
         
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
             font-family: var(--font-body);
-            background: linear-gradient(135deg, var(--primary-blue) 0%, #162B47 100%);
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0;
             padding: 20px;
         }
         
         .container {
-            max-width: 600px;
+            max-width: 650px;
             background: white;
             padding: 3rem;
             border-radius: 8px;
@@ -44,6 +50,18 @@
             justify-content: center;
             font-size: 3rem;
             color: white;
+            animation: scaleIn 0.5s ease-out;
+        }
+        
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
         
         h1 {
@@ -51,6 +69,7 @@
             color: var(--primary-blue);
             font-size: 2.5rem;
             margin-bottom: 1rem;
+            font-weight: 600;
         }
         
         p {
@@ -61,51 +80,132 @@
         }
         
         .info-box {
-            background: #f9fafb;
+            background: #E6E7E8;
             padding: 1.5rem;
             border-left: 4px solid var(--gold-accent);
             margin: 2rem 0;
             text-align: left;
         }
         
+        .info-box p {
+            margin: 0;
+        }
+        
+        .info-box ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 1rem;
+        }
+        
+        .info-box li {
+            padding: 0.5rem 0;
+            color: #1F3A5F;
+        }
+        
+        .info-box li::before {
+            content: '✓ ';
+            color: var(--gold-accent);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+        
+        .urgent-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .urgent-box p {
+            margin: 0;
+            color: #856404;
+        }
+        
+        .urgent-box strong {
+            color: var(--primary-blue);
+        }
+        
+        .phone-link {
+            color: var(--primary-blue);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1.3rem;
+        }
+        
+        .phone-link:hover {
+            color: var(--gold-accent);
+        }
+        
         .btn {
             display: inline-block;
             background: var(--primary-blue);
             color: white;
-            padding: 1rem 2rem;
+            padding: 1rem 2.5rem;
             text-decoration: none;
             border-radius: 4px;
             margin-top: 2rem;
             font-weight: 600;
             transition: all 0.3s;
+            font-size: 1rem;
         }
         
         .btn:hover {
             background: var(--gold-accent);
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(198, 167, 94, 0.4);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            p {
+                font-size: 1rem;
+            }
+            
+            .checkmark {
+                width: 60px;
+                height: 60px;
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="checkmark">✓</div>
-        <h1>¡Consulta Enviada!</h1>
+        <h1>¡Consulta Enviada Correctamente!</h1>
         <p>Gracias por contactar con <strong>Hernando & Asociados</strong>.</p>
         
         <div class="info-box">
-            <p style="margin: 0;"><strong>¿Qué sucede ahora?</strong></p>
+            <p><strong>¿Qué sucede ahora?</strong></p>
+            <ul>
+                <li>Hemos recibido su consulta</li>
+                <li>Nuestro equipo la revisará inmediatamente</li>
+                <li>Le contactaremos en menos de 24 horas laborables</li>
+                <li>Recibirá un email de confirmación</li>
+            </ul>
+        </div>
+        
+        <div class="urgent-box">
+            <p><strong>¿Necesita atención urgente?</strong></p>
+            <p style="margin-top: 0.5rem;">Llámenos directamente al:</p>
             <p style="margin-top: 0.5rem;">
-                ✓ Hemos recibido su consulta correctamente<br>
-                ✓ Nuestro equipo la revisará en breve<br>
-                ✓ Le contactaremos en menos de 24 horas laborables<br>
-                ✓ Recibirá un email de confirmación
+                <a href="tel:652084290" class="phone-link">652 084 290</a>
             </p>
         </div>
         
-        <p><strong>¿Necesita atención urgente?</strong><br>
-        Llámenos directamente al <a href="tel:652084290" style="color: var(--primary-blue);">652 084 290</a></p>
+        <p style="color: #6D6E71; font-size: 0.95rem; margin-top: 1.5rem;">
+            <strong>Horario de atención:</strong><br>
+            Lunes a Viernes: 9:00 - 14:00 / 16:00 - 20:00
+        </p>
         
-        <a href="/" class="btn">Volver a la Página Principal</a>
+        <a href="https://abogados.onrender.com" class="btn">← Volver a la Página Principal</a>
     </div>
 </body>
 </html>
