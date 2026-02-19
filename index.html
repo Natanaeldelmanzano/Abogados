@@ -1457,32 +1457,40 @@
                     en menos de 24 horas para analizar su caso.
                 </p>
             </div>
-
-            <!-- FORMULARIO CON NETLIFY FORMS -->
-            <form name="contacto-hernando" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/gracias.html">
-                <input type="hidden" name="form-name" value="contacto-hernando" />
+    
+            <!-- FORMULARIO CON WEB3FORMS -->
+            <form action="https://api.web3forms.com/submit" method="POST" id="contactForm">
                 
-                <p style="display: none;">
-                    <label>No llenar este campo si eres humano: <input name="bot-field" /></label>
-                </p>
-
+                <!-- Access Key de Web3Forms -->
+                <input type="hidden" name="access_key" value="98d1b96c-e863-48ec-b402-04eb11940f67">
+                
+                <!-- Configuración del email -->
+                <input type="hidden" name="subject" value="Nueva Consulta desde Web - Hernando & Asociados">
+                <input type="hidden" name="from_name" value="Formulario Web Hernando">
+                
+                <!-- Redirect después de enviar -->
+                <input type="hidden" name="redirect" value="https://abogados.onrender.com/gracias.html">
+                
+                <!-- Honeypot anti-spam (oculto) -->
+                <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+    
                 <div class="form-grid">
                     <div class="form-group">
                         <label class="form-label" for="nombre">Nombre completo *</label>
                         <input type="text" id="nombre" name="nombre" class="form-input" required placeholder="Su nombre">
                     </div>
-
+    
                     <div class="form-group">
                         <label class="form-label" for="telefono">Teléfono *</label>
                         <input type="tel" id="telefono" name="telefono" class="form-input" required placeholder="612 345 678" pattern="[0-9]{9}">
                     </div>
                 </div>
-
+    
                 <div class="form-group">
                     <label class="form-label" for="email">Correo electrónico *</label>
                     <input type="email" id="email" name="email" class="form-input" required placeholder="su@email.com">
                 </div>
-
+    
                 <div class="form-group">
                     <label class="form-label" for="area">Área de consulta *</label>
                     <select id="area" name="area" class="form-select" required>
@@ -1498,12 +1506,12 @@
                         <option value="Derecho Inmobiliario">Derecho Inmobiliario</option>
                     </select>
                 </div>
-
+    
                 <div class="form-group full-width">
                     <label class="form-label" for="mensaje">Descripción de su caso *</label>
                     <textarea id="mensaje" name="mensaje" class="form-textarea" required placeholder="Describa brevemente su situación..."></textarea>
                 </div>
-
+    
                 <div class="form-group full-width checkbox-group">
                     <input type="checkbox" id="privacy" name="privacy" required>
                     <label for="privacy">
@@ -1511,9 +1519,9 @@
                         y el tratamiento de mis datos personales. *
                     </label>
                 </div>
-
+    
                 <button type="submit" class="btn btn-submit">Enviar Consulta Gratuita</button>
-
+    
                 <p style="text-align: center; margin-top: 1.5rem; font-size: 0.9rem; opacity: 0.9;">
                     Le responderemos en un plazo máximo de 24 horas laborables.
                 </p>
