@@ -116,17 +116,10 @@
             margin: 0 auto;
         }
         
-        .logo {
-            font-family: var(--font-heading);
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: var(--primary-blue);
-            letter-spacing: 1px;
+        .logo1 {
+            height: 8vh;
+            width: auto;
             z-index: 1001;
-        }
-        
-        .logo span {
-            color: var(--gold-accent);
         }
         
         .nav {
@@ -158,6 +151,7 @@
             width: 100%;
         }
         
+        /* DROPDOWN DESKTOP - CON PROTECCIÓN */
         .dropdown {
             position: relative;
         }
@@ -182,12 +176,14 @@
             transition: var(--transition);
             box-shadow: 0 10px 40px rgba(31, 58, 95, 0.15);
             border-top: 2px solid var(--gold-accent);
+            pointer-events: none;
         }
         
         .dropdown:hover .dropdown-menu {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
+            pointer-events: all;
         }
         
         .dropdown-item {
@@ -261,11 +257,13 @@
             background: rgba(0, 0, 0, 0.5);
             z-index: 999;
             opacity: 0;
-            transition: opacity 0.4s ease;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
         }
         
         .mobile-overlay.active {
             opacity: 1;
+            visibility: visible;
         }
         
         .mobile-nav-link {
@@ -287,6 +285,7 @@
             font-size: 1.1rem;
             border-bottom: 1px solid var(--silver-gray);
             cursor: pointer;
+            user-select: none;
         }
         
         .mobile-dropdown-menu {
@@ -905,13 +904,23 @@
         
         /* Mobile devices */
         @media (max-width: 768px) {
+            /* DESHABILITAR COMPLETAMENTE DROPDOWN DESKTOP */
+            .dropdown {
+                pointer-events: none !important;
+            }
+            
+            .dropdown-menu {
+                display: none !important;
+                pointer-events: none !important;
+            }
+            
             /* Header mobile */
             .nav {
                 display: none;
             }
             
             .cta-header {
-                display: none; /* Ocultar botón de teléfono en header móvil */
+                display: none;
             }
             
             .mobile-menu-btn {
@@ -927,8 +936,8 @@
                 padding: 1rem 1.5rem;
             }
             
-            .logo {
-                font-size: 1.4rem;
+            .logo1 {
+                height: 6vh;
             }
             
             /* Urgency banner mobile */
@@ -1037,7 +1046,7 @@
                 gap: 2rem;
             }
             
-            /* Floating CTA mobile - Círculo con teléfono */
+            /* Floating CTA mobile - Círculo */
             .floating-cta {
                 bottom: 1.5rem;
                 right: 1.5rem;
@@ -1084,12 +1093,6 @@
                 font-size: 0.75rem;
             }
         }
-        .logo1{
-            height: 8vh;   /* Ajusta según tu diseño */
-            width: auto;
-        }
-
-
     </style>
 </head>
 <body>
@@ -1100,8 +1103,6 @@
     <header class="header" id="header">
         <div class="header-container">
             <img src="imagenes/hya.png" class="logo1" alt="Logo Hernando y Asociados">
-
-
             
             <nav class="nav">
                 <div class="dropdown">
@@ -1459,10 +1460,8 @@
 
             <!-- FORMULARIO CON NETLIFY FORMS -->
             <form name="contacto-hernando" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/gracias.html">
-                <!-- Campo oculto para Netlify Forms -->
                 <input type="hidden" name="form-name" value="contacto-hernando" />
                 
-                <!-- Honeypot anti-spam (oculto) -->
                 <p style="display: none;">
                     <label>No llenar este campo si eres humano: <input name="bot-field" /></label>
                 </p>
@@ -1593,6 +1592,10 @@
                 <div class="footer-column">
                     <h4>Contacta Hernando & Asociados</h4>
                     <p style="line-height: 2;">
+                        <strong>Email:</strong><br>
+                        <a href="mailto:abogados@hernandoyasociados.com">abogados@hernandoyasociados.com</a>
+                    </p>
+                    <p style="line-height: 2; margin-top: 1rem;">
                         <strong>Teléfono:</strong><br>
                         <a href="tel:652084290">652 084 290</a>
                     </p>
@@ -1605,8 +1608,6 @@
                         <strong>Horario:</strong><br>
                         Lunes a Viernes: 9:00 - 14:00 / 16:00 - 20:00
                     </p>
-                    
-                    
                 </div>
 
                 <div class="footer-column">
@@ -1632,8 +1633,6 @@
                         <li><a href="#municipios">Ver todos...</a></li>
                     </ul>
                 </div>
-
-            
             </div>
 
             <div class="footer-bottom">
@@ -1655,36 +1654,114 @@
         </a>
     </div>
 
-    <!-- JAVASCRIPT -->
+    <!-- JAVASCRIPT CORREGIDO -->
     <script>
-        // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileNav = document.getElementById('mobileNav');
-        const mobileOverlay = document.getElementById('mobileOverlay');
+        (function() {
+            'use strict';
+            
+            // ===========================================
+            // MENÚ MÓVIL - VERSIÓN DEFINITIVA CORREGIDA
+            // ===========================================
+            
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileNav = document.getElementById('mobileNav');
+            const mobileOverlay = document.getElementById('mobileOverlay');
+            const mobileServiciosToggle = document.getElementById('mobileServiciosToggle');
+            const mobileServiciosMenu = document.getElementById('mobileServiciosMenu');
+            
+            let menuAbierto = false;
+            
+            function abrirMenu() {
+                menuAbierto = true;
+                mobileNav.classList.add('active');
+                mobileOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            
+            function cerrarMenu() {
+                menuAbierto = false;
+                mobileNav.classList.remove('active');
+                mobileOverlay.classList.remove('active');
+                mobileServiciosMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            
+            // Botón hamburguesa
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    if (menuAbierto) {
+                        cerrarMenu();
+                    } else {
+                        abrirMenu();
+                    }
+                });
+            }
+            
+            // Overlay (fondo oscuro)
+            if (mobileOverlay) {
+                mobileOverlay.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    cerrarMenu();
+                });
+            }
+            
+            // Toggle dropdown servicios DENTRO del menú
+            if (mobileServiciosToggle) {
+                mobileServiciosToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    mobileServiciosMenu.classList.toggle('active');
+                });
+            }
+            
+            // Prevenir cierre al hacer clic dentro del menú
+            if (mobileNav) {
+                mobileNav.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            }
+            
+            // Cerrar al hacer clic en enlaces
+            const enlaces = document.querySelectorAll('.mobile-nav-link, .mobile-dropdown-item');
+            enlaces.forEach(function(link) {
+                link.addEventListener('click', function() {
+                    cerrarMenu();
+                });
+            });
+            
+            // Cerrar con ESC
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && menuAbierto) {
+                    cerrarMenu();
+                }
+            });
+            
+            // Cerrar al cambiar orientación
+            window.addEventListener('orientationchange', function() {
+                if (menuAbierto) {
+                    cerrarMenu();
+                }
+            });
+            
+            // Cerrar si viewport se agranda
+            let anchoAnterior = window.innerWidth;
+            window.addEventListener('resize', function() {
+                const anchoActual = window.innerWidth;
+                if (anchoAnterior <= 768 && anchoActual > 768 && menuAbierto) {
+                    cerrarMenu();
+                }
+                anchoAnterior = anchoActual;
+            });
+            
+        })();
         
-        function toggleMobileMenu() {
-            mobileNav.classList.toggle('active');
-            mobileOverlay.classList.toggle('active');
-            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
-        }
+        // ===========================================
+        // HEADER SCROLL EFFECT
+        // ===========================================
         
-        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
-        mobileOverlay.addEventListener('click', toggleMobileMenu);
-        
-        // Mobile dropdown toggle
-        const mobileServiciosToggle = document.getElementById('mobileServiciosToggle');
-        const mobileServiciosMenu = document.getElementById('mobileServiciosMenu');
-        
-        mobileServiciosToggle.addEventListener('click', function() {
-            mobileServiciosMenu.classList.toggle('active');
-        });
-        
-        // Close mobile menu on link click
-        document.querySelectorAll('.mobile-nav-link, .mobile-dropdown-item').forEach(link => {
-            link.addEventListener('click', toggleMobileMenu);
-        });
-        
-        // Header scroll effect
         window.addEventListener('scroll', function() {
             const header = document.getElementById('header');
             const floatingCta = document.getElementById('floatingCta');
@@ -1698,11 +1775,14 @@
             }
         });
 
-        // Fade-in animation on scroll
+        // ===========================================
+        // FADE-IN ANIMATION
+        // ===========================================
+        
         const fadeElements = document.querySelectorAll('.fade-in');
         
-        const fadeInOnScroll = () => {
-            fadeElements.forEach(element => {
+        function fadeInOnScroll() {
+            fadeElements.forEach(function(element) {
                 const elementTop = element.getBoundingClientRect().top;
                 const elementBottom = element.getBoundingClientRect().bottom;
                 
@@ -1710,32 +1790,35 @@
                     element.classList.add('visible');
                 }
             });
-        };
+        }
         
         window.addEventListener('scroll', fadeInOnScroll);
         window.addEventListener('load', fadeInOnScroll);
 
-        // FAQ accordion
-        document.querySelectorAll('.faq-question').forEach(question => {
+        // ===========================================
+        // FAQ ACCORDION
+        // ===========================================
+        
+        document.querySelectorAll('.faq-question').forEach(function(question) {
             question.addEventListener('click', function() {
                 const faqItem = this.parentElement;
                 const isActive = faqItem.classList.contains('active');
                 
-                // Close all items
-                document.querySelectorAll('.faq-item').forEach(item => {
+                document.querySelectorAll('.faq-item').forEach(function(item) {
                     item.classList.remove('active');
                 });
                 
-                // Open clicked item if it wasn't active
                 if (!isActive) {
                     faqItem.classList.add('active');
                 }
             });
         });
 
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        // ===========================================
+        // SMOOTH SCROLL
+        // ===========================================
+        
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
