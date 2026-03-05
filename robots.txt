@@ -1,0 +1,65 @@
+# ROBOTS.TXT para www.hernandoasociados.com
+# Permitir acceso a motores de búsqueda
+# Subir este archivo a la RAÍZ del servidor
+
+User-agent: *
+Allow: /
+Allow: /pages/
+Allow: /css/
+Allow: /js/
+Allow: /imagenes/
+Allow: *.html
+Allow: *.css
+Allow: *.js
+Allow: *.jpg
+Allow: *.jpeg
+Allow: *.png
+Allow: *.gif
+Allow: *.webp
+Allow: *.svg
+Allow: *.ico
+
+# Bloquear directorios/archivos que no subiremos
+Disallow: /src/
+Disallow: /.git/
+Disallow: /.gitignore
+Disallow: /node_modules/
+Disallow: /package.json
+Disallow: /package-lock.json
+Disallow: /generate.js
+Disallow: /clean.js
+Disallow: /*.json
+Disallow: /README.md
+Disallow: /DEPLOY-INSTRUCTIONS.md
+Disallow: /QUICK-START.md
+Disallow: /TEMPLATE-REFERENCE.md
+Disallow: /EXAMPLES-PAGES-JSON.md
+Disallow: /HOW-TO-COMMON-TASKS.md
+Disallow: /DOCUMENTACION-COMPLETA.md
+Disallow: /REFERENCIA-VISUAL.md
+Disallow: /RESUMEN-FINAL-ENTREGA.md
+Disallow: /INDICE-ACCESO-RAPIDO.md
+
+# Desacelerar crawlers agresivos
+User-agent: MJ12bot
+Crawl-delay: 10
+
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+# Ubicación del sitemap
+Sitemap: https://www.hernandoasociados.com/sitemap.xml
+
+# Información adicional
+# Este archivo instruye a los motores de búsqueda sobre qué indexar
+# Todos los archivos permitidos se indexarán automáticamente
+
+# NOTAS IMPORTANTES:
+# 1. Este archivo debe estar en la RAÍZ del servidor (/robots.txt)
+# 2. El sitemap.xml también debe estar en la RAÍZ
+# 3. Los bots respetan este archivo (pero no todos)
+# 4. Google honra el Sitemap especificado
+# 5. Validar en Google Search Console después de subir
